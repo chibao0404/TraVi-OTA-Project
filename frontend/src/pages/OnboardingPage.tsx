@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { ChevronRight, CheckCircle2, Loader } from 'lucide-react'
-import { preferenceService, type DanhMucSoThich, type SoThich } from '../services/preferenceService'
+import { preferenceService, type DanhMucSoThich } from '../services/preferenceService'
 
 type Step = 'categories' | 'preferences' | 'confirm'
 
