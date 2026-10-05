@@ -70,7 +70,10 @@ jobs:
         run: |
           cat > .env << EOF
           POSTGRES_PASSWORD=dummy_password_for_ci
-          OPENAI_API_KEY=sk-dummy-key-for-ci-only
+          OPENAI_API_KEY=dummy-openai-key-for-ci
+          JWT_SECRET_KEY=dummy-jwt-secret-for-ci-only
+          JWT_EXPIRATION_TIME=3600000
+          VITE_GOOGLE_CLIENT_ID=dummy-google-client-id
           EOF
 
       - name: Build Docker images

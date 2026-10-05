@@ -12,7 +12,14 @@ export function useAiRecommendations(
   options: UseAiRecommendationsOptions = {},
 ) {
   const enabled = options.enabled ?? true
-  const paramsKey = useMemo(() => JSON.stringify(params), [params])
+  const stableParams = useMemo(
+    () => ({
+      type: params.type,
+      city: params.city,
+      limit: params.limit,
+    }),
+    [params.type, params.city, params.limit],
+  )
   const [data, setData] = useState<UserAiRecommendationResponse | null>(null)
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
@@ -25,7 +32,7 @@ export function useAiRecommendations(
     setLoading(true)
     setError(null)
     try {
-      const result = await getUserRecommendations(params)
+      const result = await getUserRecommendations(stableParams)
       setData(result)
     } catch (fetchError) {
       setData(null)
@@ -33,7 +40,7 @@ export function useAiRecommendations(
     } finally {
       setLoading(false)
     }
-  }, [enabled, paramsKey])
+  }, [enabled, stableParams])
 
   useEffect(() => {
     void refetch()

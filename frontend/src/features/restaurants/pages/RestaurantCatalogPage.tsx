@@ -32,7 +32,7 @@ function getVisiblePageNumbers(currentPage: number, totalPages: number) {
   }
 
   let start = Math.max(0, currentPage - 3)
-  let end = Math.min(totalPages - 1, start + maxButtons - 1)
+  const end = Math.min(totalPages - 1, start + maxButtons - 1)
   start = Math.max(0, end - maxButtons + 1)
 
   const result: number[] = []
